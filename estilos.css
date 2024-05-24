@@ -1,0 +1,105 @@
+body {
+    font-family: Arial, sans-serif;
+	font-size: 1rem;
+	line-height: 1.6;
+    margin: 2;
+    padding: 0;
+    background-color: #f8f8f8;
+    color: #333;
+    transition: all 0.3s ease;/* para hacer transiciones suaves*/
+}
+
+h1, h2 {
+    text-align: left; /* Consistencia en la alineación */
+}
+
+.chart-container {
+    width: 80%;
+    margin: 10px auto;
+}
+
+.theme-buttons {/*quiero verlos en una linea*/
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+button {
+            padding: 10px 20px;
+			justify-content: center;
+            font-size: 0.875rem; /* 14px si el body tiene 16px */
+            cursor: pointer;
+			transition: background-color 0.3s ease;	
+}
+ button:hover,
+button:focus  {
+    background-color: #fcdd09; /* Color de fondo al pasar el ratón */
+}
+/*Memoria: Se añadió el atributo aria-describedby="chartDescription" al <canvas> para referenciar un elemento que proporciona una descripción detallada del gráfico. El elemento con id="chartDescription" contiene la descripción adicional. Esta descripción es oculta visualmente (visually-hidden) pero accesible para lectores de pantalla.
+Elemento visually-hidden:
+La clase visually-hidden oculta el contenido visualmente pero lo hace accesible para tecnologías de asistencia, como lectores de pantalla.*/
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/*colores fondos páginas y del texto de los p y h1 etc*/
+/* Tema por defecto */
+.default {
+    background-color: #fff;
+    color: #333;
+}
+/* Tema oscuro */
+.dark {
+    background-color: #333;
+    color: #fff;
+	ticks-color:'black';				
+}
+.dark a{
+    color: white; /* Color del texto en blanco para celdas de tabla */
+}
+/* Para daltonismo total acromatopsia se aplica una escala de grises a toda la página */
+.colorBlind {
+    background-color: #fff;
+    color: #333;
+    filter: grayscale(100%);
+}
+/* Estilos para el tema de daltonismo (deuteranopia) */
+.colorBlindDeuteranopia {
+    background-color: #fff;
+    color: #333;
+}
+/*	verde milit 6e6f35, caqui suave b3b373, beige amarillento e6e6b4 , azul medio 788cbe, azul fuerte 4c629e	*/
+
+/*tabla de datos*/
+table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            display: none; /* Ocultar la tabla inicialmente */
+        }
+th, td {
+            border: 1px solid #b3b373;
+            padding: 8px;
+            text-align: center;
+        }
+th {
+            background-color: #f2f2f2;
+        }
+
+.dark th, .dark td {
+    color: white; /* Color del texto en blanco para celdas de tabla */
+}
+
+.dark th {
+    background-color: grey; /* Color del texto en blanco para celdas de tabla */
+}
+.dark table {
+    border-color: white; /* Color del borde de la tabla en blanco */
+}

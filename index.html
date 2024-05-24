@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es"> <!--memoria: indicamos el idioma para el lector de pantalla-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizaciones de Datos Accesibles</title>
+	<link rel="stylesheet" href="estilos.css">
+    <!--biblioteca de gráficos chart js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+
+<body>
+
+
+<!-- Botones de cambio de tema -->
+<!--memoria: Texto alternativo para los botones de tema: Se añadió aria-label a cada botón para describir su función específica. Esto ayuda a los usuarios que dependen de lectores de pantalla a entender claramente lo que hace cada botón.-->
+    <div class="theme-buttons">
+        <button aria-label="Activar tema claro" onclick="setTheme('default')">Tema claro</button>
+        <button aria-label="Activar tema oscuro" onclick="setTheme('dark')">Tema oscuro</button>
+        <button aria-label="Activar tema para daltonismo total (Acromatopsia)" onclick="setTheme('colorBlind')">Para daltonismo total (Acromatopsia)</button>
+        <button aria-label="Activar tema para daltonismo (Deuteranopia)" onclick="setTheme('colorBlindDeuteranopia')">Para daltonismo (Deuteranopia)</button>
+    </div>
+
+
+  <h1>Información de la ceguera en la Comunidad Valenciana</h1> <!--memoria titulo h1 descriptivo-->
+  
+  <h2>Ceguera total en la Comunidad Valenciana</h2> <!--memoria titulo h2 descriptivo-->
+
+
+
+<!-- Contenedor del gráfico -->
+<div class="chart-container">
+    <canvas id="barChart" aria-labelledby="chartTitle" aria-describedby="chartDescription" role="img"></canvas> <!-- memoria Usamos atributos aria-labelledby y aria-describedby y role -->
+</div>
+
+<!-- Título y descripción para el gráfico -->
+<div id="chartTitle" class="visually-hidden">Gráfico de barras de cantidad de habitantes con ceguera total por provincias de la Comunidad Valenciana</div>
+<!-- memoria Usamos atributo aria-labelledby="chartTitle" para enlazar el gráfico con un título accesible. El lector de pantalla leerá el contenido del elemento con id="chartTitle" antes de leer cualquier otra cosa relacionada con el gráfico.
+ -->
+<div id="chartDescription" class="visually-hidden">
+    Este gráfico de barras muestra la cantidad de habitantes con ceguera total por provincias de la Comunidad Valenciana para los años 2021, 2022 y 2023. 
+    Alicante tiene un crecimiento constante, Castellón muestra una disminución en 2022 y Valencia presenta el mayor aumento en 2023.
+	Respecto al uso de colores seleccionados, se han utilizado intencionadamente los colores oficiales de la Comunidad Valenciana: azul, amarillo y rojo.</div>
+<!-- memoria Usamos atributo aria-describedby para proporcionar una descripción detallada del gráfico. 
+indicamos tambien que existe una intención en la seleccion de colores del grafico para que las personas que no puedan ver tengan tambien esta información
+El lector de pantalla leerá este contenido después del título. -->
+
+<!-- memoria: role="img": Este atributo asegura que el lector de pantalla trate el <canvas> como un contenido visual que necesita ser descrito, mejorando la comprensión del usuario sobre lo que representa el gráfico. El atributo role="img" convierte el elemento en una imagen semántica para las tecnologías de asistencia. Esto es útil cuando el contenido del elemento no es texto directamente legible, como un gráfico dibujado en un <canvas>. Cuando un lector de pantalla encuentre el elemento con role="img", tratará de leer cualquier texto alternativo asociado a este elemento, como el proporcionado por aria-label, aria-labelledby o aria-describedby. -->
+	
+	
+
+<div class="theme-buttons">	
+ <button id="mostrarTabla" aria-label="Mostrar/ocultar tabla de datos" onclick="mostrarTabla()">Mostrar datos</button>
+ </div>
+ 
+    <table id="tablaDatos" aria-labelledby="tableLabel">
+	<caption id="tableLabel">Datos de habitantes con ceguera total por provincia y año</caption> <!--memoria: atributos caption y de titulo-->
+        <thead><!--memoria: atributos thead, tbody, tfoot, tr,th, td que garantizan una tabla accesible-->
+            <tr>
+                <th scope="col">Año</th><!--memoria: atributos scope y headers en tablas para mejorar la accesibilidad, scope en tablas sencillas-->
+				<th scope="col">Alicante</th>
+				<th scope="col">Castellón</th>
+				<th scope="col">Valencia</th>
+			<!--memoria: El atributo scope define el conjunto de celdas para las cuales la celda sobre la que se aplica proporciona información de encabezamiento. 
+			En este caso toma el valor col: La celda proporciona información de encabezamiento para el resto de celdas de la columna que la contiene.	-->
+            </tr>
+        </thead>
+		
+        <tbody>
+            <tr>
+                <td>2021</td>
+                <td>539,000</td>
+                <td>390,000</td>
+                <td>598,000</td>
+            </tr>
+            <tr>
+                <td>2022</td>
+                <td>552,000</td>
+                <td>360,000</td>
+                <td>648,000</td>
+            </tr>
+            <tr>
+                <td>2023</td>
+                <td>634,000</td>
+                <td>410,000</td>
+                <td>680,000</td>
+            </tr>
+        </tbody>
+		
+		<tfoot>
+			<tr><!--memoria: añadimos una fila al final para comentar las unidades de los datos, esto podría hacerse de otra menera.
+			El atributo aria-describedby se puede agregar si hay una explicación o nota sobre la tabla. En este caso, se asume que el contenido de la tabla es claro sin necesidad de descripción adicional. -->
+				<td colspan="4" style="text-align: center;">Valores en unidades de habitantes</td>
+			</tr>
+		</tfoot>
+    </table>
+
+    
+
+    <!-- Biblioteca Chart.js para el gráfico de columnas -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Script para inicializar el gráfico y funcionalidades de la página -->
+    <script src="script.js"></script>	
+	
+	
+</body>
+
+
+
+<footer> <!--memoria: el W3C propociona una herramienta que nos genera automaticamente este codigo, si queremos garantizar que cumplimos ('fully conformant') las wcag 2.1 con el nivel AA-->
+	<h2>Accessibility Statement for <span class="basic-information website-name">Ejemplo proyecto de fin de Grado</span></h2>
+	<p>
+		This is an accessibility statement from <span class="basic-information organization-name">ALEJANDRA CASTILLO VALDES</span>.
+	</p>
+	<h3>Conformance status</h3>
+	<p>
+		The <a href="https://www.w3.org/WAI/standards-guidelines/wcag/">Web Content Accessibility Guidelines (WCAG)</a> defines requirements for designers and developers to improve accessibility for people with disabilities. It defines three levels of conformance: Level A, Level AA, and Level AAA.
+		<span class="basic-information website-name">Ejemplo proyecto de fin de Grado</span>
+		is
+		<span class="basic-information conformance-status" data-printfilter="lowercase">fully conformant</span>
+		with
+		<span class="basic-information conformance-standard"><span data-negate="">WCAG 2.1 level AA</span>.</span>
+		<span>
+		<span class="basic-information conformance-status">Fully conformant</span>
+		means that
+		<span class="basic-information conformance-meaning">the content fully conforms to the accessibility standard without any exceptions</span>.
+	</span>
+	</p>
+	<hr noshade="noshade">
+	<h3>Date</h3>
+	<p>
+		This statement was created on
+		<span class="basic-information statement-created-date">24 April 2024</span>
+		using the <a href="https://www.w3.org/WAI/planning/statements/">W3C Accessibility Statement Generator Tool</a>.
+	</p>
+</footer>
+
+</html>
